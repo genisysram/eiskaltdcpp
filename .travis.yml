@@ -1,7 +1,5 @@
 language: cpp
-arch: 
-    - amd64
-    - ppc64le
+
 
 sudo: required
 cache: ccache
@@ -48,6 +46,55 @@ jobs:
     - env: TARGET=windows64
       os: linux
       dist: xenial
+#adding code to run on power systems
+    - env: TARGET=linux64 USE_QT=qt5 DIST=xenial
+      os: linux
+      dist: xenial
+      compiler: clang
+      arch: ppc64le
+    - env: TARGET=linux64 USE_QT=qt5 DIST=xenial
+      os: linux
+      dist: xenial
+      compiler: gcc
+      arch: ppc64le
+    - env: TARGET=linux64 USE_QT=qt5 DIST=focal
+      os: linux
+      dist: focal
+      arch: ppc64le
+    - env: TARGET=linux64 USE_QT=qt4
+      os: linux
+      dist: xenial
+      arch: ppc64le
+    - env: TARGET=linux64 USE_GTK=gtk3
+      os: linux
+      dist: xenial
+      arch: ppc64le
+    - env: TARGET=linux64 USE_GTK=gtk2
+      os: linux
+      dist: xenial
+      arch: ppc64le
+    - env: TARGET=linux64 USE_DAEMON=jsonrpc
+      os: linux
+      dist: xenial
+      arch: ppc64le
+    - env: TARGET=macos64
+      os: osx
+      osx_image: xcode9.4
+    - env: TARGET=macos64
+      os: osx
+      osx_image: xcode11.3
+    - env: TARGET=macos64
+      os: osx
+      osx_image: xcode12
+    - env: TARGET=windows32
+      os: linux
+      dist: xenial
+      arch: ppc64le
+    - env: TARGET=windows64
+      os: linux
+      dist: xenial
+      arch: ppc64le
+
 
 install:
   - ./tests/travis-ci/install-build-depends.sh
